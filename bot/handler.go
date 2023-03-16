@@ -13,22 +13,21 @@ import (
 func (h *BotHandler) CheckUserExistence(user *storage.User) bool {
 	exists, err := h.storage.CheckUserExistence(user.TgID)
 	if err != nil {
-		log.Println(err)
+		log.Printf("CheckUserExistence failed to check info in db for user %d: %s\n", user.TgID, err)
 	}
 
 	return exists
-
 }
 
 func (h *BotHandler) WelcomeMessage(user *storage.User) error {
 	msg := tgbotapi.NewMessage(user.TgID, "Добро пожаловать!\nВведите имя города: ")
 	msg.ReplyMarkup = tgbotapi.NewRemoveKeyboard(true)
 	if _, err := h.bot.Send(msg); err != nil {
-		log.Println(err)
+		log.Printf("Failed to send welcoming text to user %d: %s\n", user.TgID, err)
 	}
 	_, err := h.storage.CreateUser(user)
 	if err != nil {
-		log.Println(err)
+		log.Printf("CreateUser failed to create user in db for user %d: %s\n", user.TgID, err)
 	}
 	return err
 }
@@ -42,18 +41,18 @@ func (h *BotHandler) GetTemperature(update tgbotapi.Update, user *storage.User) 
 		msg.ReplyMarkup = getDataKeyboard
 		_, err := h.bot.Send(msg)
 		if err != nil {
-			log.Println(err)
+			log.Printf("Failed to send temperature to user %d: %s\n", user.TgID, err)
 		}
 		user.City = city
 		if _, err := h.storage.CreateRequest(user); err != nil {
-			log.Println(err)
+			log.Printf("CreateRequest failed to create request in db for request %s: %s\n", user.City, err)
 		}
 	} else {
 		responseText := fmt.Sprintf("Извините, нам не удалось найти температуру для %s. Пожалуйста, проверьте правописание и повторите попытку.", update.Message.Text)
 		msg := tgbotapi.NewMessage(update.Message.Chat.ID, responseText)
 		_, err := h.bot.Send(msg)
 		if err != nil {
-			log.Println(err)
+			log.Printf("Failed to send warning to user %d: %s\n", user.TgID, err)
 		}
 	}
 	return nil

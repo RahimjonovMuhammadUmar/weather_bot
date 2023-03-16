@@ -10,19 +10,3 @@ var getDataKeyboard = tgbotapi.NewReplyKeyboard(
 		tgbotapi.NewKeyboardButton("Все запросы"),
 	),
 )
-
-// var key = tgbotapi.NewKeyboardButton("Мой первый запрос")
-
-// var getDataKeyboard = tgbotapi.NewReplyKeyboard(
-//     tgbotapi.NewKeyboardButtonRow(
-//         tgbotapi.NewKeyboardButton("Мой первый запрос"),
-//         tgbotapi.NewKeyboardButton("Все запросы"),
-//     ),
-// )
-
-// var getDataKeyboard = tgbotapi.NewReplyKeyboard(
-// 	tgbotapi.NewKeyboardButtonRow(
-// 		tgbotapi.NewKeyboardButton("Мой первый запрос"),
-// 		tgbotapi.NewKeyboardButton("Все запросы"),
-// 	),
-// )

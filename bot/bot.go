@@ -76,6 +76,6 @@ func (h *BotHandler) HandleBot(update tgbotapi.Update) {
 	}
 	if err != nil {
 		log.Println("failed to handle message: ", err)
-		h.SendMessage(user, "Произошла ошибка, пожалуйста перезапустите бот /start")
+		h.SendMessage(user, "Произошла ошибка, пожалуйста перезапустите бота /start")
 	}
 }
