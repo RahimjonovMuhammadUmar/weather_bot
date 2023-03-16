@@ -4,12 +4,12 @@
 ## Running
     To run the weather bot, you will need to have Docker installed on your machine. Once you have Docker installed,
     you can use the following commands to build and run the bot:
-    ```
-    docker compose build
-    ```
-    ```
-    docker compose up
-    ```
+```
+docker compose build
+```
+```
+docker compose up
+```
 
 ## Usage
 To use the weather bot, simply run send the name of the location you want to get weather information for.
