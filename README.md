@@ -1,3 +1,10 @@
+
+## Warning 
+Sometimes "depends on" in docker-compose.yml does not work causing bot to running before postgres container that is why sometimes "connection refused" error occures, 
+```
+docker start weather_bot
+```
+solves the problem
 ## Weather bot written in Golang
     This weather bot is a telegram bot tool that provides users with up-to-date weather information for a given location.
 
@@ -18,4 +25,3 @@ For example:
     London
 
 This will return the current temperature for London.
-
