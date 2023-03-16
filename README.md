@@ -1,3 +1,6 @@
+## Ссылка на бот
+    https://t.me/golang_for_testing_bot
+
 
 ## Warning 
 Sometimes "depends on" in docker-compose.yml does not work causing bot to running before postgres container that is why sometimes "connection refused" error occures, 
