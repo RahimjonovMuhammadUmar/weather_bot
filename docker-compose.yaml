@@ -1,0 +1,29 @@
+version: "3.9"
+services:
+  bot:
+    container_name: weather_bot
+    build: .
+    command: sh -c "migrate -path migrations -database \"postgresql://$POSTGRES_USER:$POSTGRES_PASSWORD@$POSTGRES_HOST:$POSTGRES_PORT/$POSTGRES_DATABASE?sslmode=disable\" up && ./main"
+    env_file:
+      - .env
+    depends_on:
+      - db
+    networks:
+      - w_network
+  db:
+    image: postgres:13
+    container_name: db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: weather_bot_db
+      DB_URL: postgres://postgres:123@db:5432/weather_bot_db?sslmode=disable
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - w_network
+networks:
+  w_network:
+volumes:
+  db_data:

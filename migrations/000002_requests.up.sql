@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS "requests" (
+    "id" SERIAL PRIMARY KEY,
+    "city" VARCHAR(100) NOT NULL,
+    "created_at" TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT NOW(),
+    "user_id" BIGINT NOT NULL REFERENCES users("tg_id")
+);
